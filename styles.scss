@@ -1,0 +1,29 @@
+/* dependencies */
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import "~bootstrap/scss/bootstrap";
+
+/* local imports */
+@import "./styles/variables";
+@import "./styles/fonts";
+@import "./styles/base";
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.invisible {
+  display: none;
+}
+
+.card,
+.card-no-poster,
+img {
+  width: 380px;
+  background-color: rgb(29, 8, 8);
+}
+
+h3 {
+  text-transform: uppercase;
+  color: white;
+}
