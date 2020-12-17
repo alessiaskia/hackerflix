@@ -10,7 +10,7 @@ const app = document.getElementById('app');
 
 // create section recent field only
 const recent = '<button type="button" class="btn btn-dark" id="recent">Recent films only</button>';
-
+let popup = '';
 // create card for each movie with image, assign numeric ID
 let card = '';
 let container = '<section class="flex-wrap">';
@@ -56,25 +56,25 @@ document.body.addEventListener('click', (e) => {
     }
   } else if (e.target.matches('.poster')) {
     // popup with info about movie
-    console.log(e.target);
     const selectedMovie = e.target.parentNode;
-    console.log(selectedMovie.id);
-    const allMovies = document.querySelectorAll('.card');
-    for (let i = 0; i < allMovies.length; i++) {
-      let popup = document.createElement('div');
-      if (selectedMovie.id === allMovies[i].id) {
-        console.log(allMovies[i].id);
-        popup = `<div class="card" style="width: 18rem">
-        <div class="card-header">Title: ${selectedMovie.title}</div>
+    const movie = movies[selectedMovie.id]; // aller chercher le film avec son index !!!! rien de plus simple
+    popup = `<div class="card popup">
+     <div class="card-body">
+       <h2 class="card-title">${movie.title}</h2>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Genres: ${selectedMovie.genres}</li>
-          <li class="list-group-item">Year: ${selectedMovie.year}</li>
-          <li class="list-group-item">Plot: ${selectedMovie.plot}</li>
-          <li class="list-group-item">Rating: ${selectedMovie.note}</li>
-          <li class="list-group-item">IMBD code: ${selectedMovie.imdb}</li>
-          </ul><button class="close">X</button></div>`;
-        app.appendChild(popup);
-      }
+          <li class="list-group-item">Genres: ${movie.genres}</li>
+          <li class="list-group-item">Year: ${movie.year}</li>
+          <li class="list-group-item">Plot: ${movie.plot}</li>
+          <li class="list-group-item">Rating: ${movie.note}</li>
+          <li class="list-group-item">IMBD code: ${movie.imdb}</li>
+          </ul>
+          <button class="close">X</button>
+      </div></div>`;
+    app.innerHTML += popup;
+  } else if (e.target.matches('.close')) {
+    const popups = document.querySelectorAll('.popup');
+    for (popup of popups) {
+      popup.classList.add('invisible');
     }
   }
 });

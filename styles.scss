@@ -21,12 +21,12 @@ img {
 .card {
   width: 300px;
   border: none;
-  background-color: rgb(112, 37, 37);
+  background-color: black;
   justify-content: center;
 }
 
 .card:hover {
-  border: 1px solid white;
+  border: 1px solid black;
 }
 
 h3 {
@@ -52,7 +52,20 @@ button {
 
 .popup {
   position: fixed;
-  margin: auto;
-  text-align: center;
+  left: 25%;
+  bottom: 20%;
   border: 5px solid rgb(99, 19, 59);
+  width: 50%;
+  h2 {
+    font-size: 5rem;
+    color: white;
+  }
+  .list-group-item {
+    font-size: 2rem;
+  }
+  .close {
+    margin-right: 50%;
+    font-size: 5rem;
+    color: white;
+  }
 }
