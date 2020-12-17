@@ -24,9 +24,9 @@ for (const movie of movies) {
   }
   // verify if poster available
   if (movie.img) {
-    card += `<img src="images/${movie.imdb}.jpg" alt="${movie.title}" />`;
+    card += `<img src="images/${movie.imdb}.jpg" alt="${movie.title}" class="poster" />`;
   } else {
-    card += `<div class="card empty"><h3>${movie.title}</h3></div>`;
+    card += `<h3 class="empty poster">${movie.title}</h3>`;
   }
   card += '</div>';
   // increase id
@@ -39,28 +39,31 @@ container += '</div>';
 app.innerHTML = `${recent + container}</section>`;
 
 // --- PART TWO: DYNAMIC JS --- //
-// create botton to filter recent movies
 const oldMovies = document.querySelectorAll('.old');
 document.body.addEventListener('click', (e) => {
+  // create botton to filter recent movies
+  // select all movies < 2000
   if (e.target.matches('#recent')) {
+    console.log(e.target);
+    for (const oldMovie of oldMovies) {
+      oldMovie.classList.toggle('invisible');
+    }
+    // change text in button
     if (e.target.innerHTML === 'Recent movies only') {
       e.target.innerHTML = 'See all movies';
     } else {
       e.target.innerHTML = 'Recent movies only';
     }
-    // select all movies < 2000
-    for (const oldMovie of oldMovies) {
-      oldMovie.classList.toggle('invisible');
-    }
-  }
-});
-
-// popup with info about movie
-let popup = '';
-document.body.addEventListener('click', (e) => {
-  if (e.target.matches('.card')) {
-    movies.forEach(selectedMovie) => {
-      if (e.target.title === selectedMovie.title){
+  } else if (e.target.matches('.poster')) {
+    // popup with info about movie
+    console.log(e.target);
+    const selectedMovie = e.target.parentNode;
+    console.log(selectedMovie.id);
+    const allMovies = document.querySelectorAll('.card');
+    for (let i = 0; i < allMovies.length; i++) {
+      let popup = document.createElement('div');
+      if (selectedMovie.id === allMovies[i].id) {
+        console.log(allMovies[i].id);
         popup = `<div class="card" style="width: 18rem">
         <div class="card-header">Title: ${selectedMovie.title}</div>
         <ul class="list-group list-group-flush">
@@ -70,7 +73,8 @@ document.body.addEventListener('click', (e) => {
           <li class="list-group-item">Rating: ${selectedMovie.note}</li>
           <li class="list-group-item">IMBD code: ${selectedMovie.imdb}</li>
           </ul><button class="close">X</button></div>`;
-        app.innerHTML += popup;
+        app.appendChild(popup);
       }
-    });
+    }
+  }
 });
