@@ -11,7 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: rgb(44, 31, 31);
+  background-color: rgb(148, 26, 26);
 }
 
 img {
@@ -24,13 +24,17 @@ img {
   border: none;
 }
 
+.card:hover {
+  border: 1px solid white;
+}
+
 h3 {
   text-transform: uppercase;
   color: black;
 }
 
 .empty {
-  background-color: yellow;
+  background-color: rgb(112, 37, 37);
   width: 100%;
   height: 300px;
 }
@@ -39,6 +43,13 @@ h3 {
   display: none;
 }
 
-.button {
-  padding: 50px;
+button {
+  margin: 50px;
+}
+
+.popup {
+  position: fixed;
+  margin: auto;
+  text-align: center;
+  border: 5px solid rgb(99, 19, 59);
 }
