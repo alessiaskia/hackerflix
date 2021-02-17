@@ -9,7 +9,7 @@ const app = document.getElementById('app');
 // --- PART ONE : STATIC JS --- //
 
 // create section recent field only
-const recent = '<button type="button" class="btn btn-dark" id="recent">Recent films only</button>';
+const recent = '<button type="button" class="btn btn-dark" id="recent">Recent movies only</button>';
 let popup = '';
 // create card for each movie with image, assign numeric ID
 let card = '';
@@ -58,8 +58,9 @@ document.body.addEventListener('click', (e) => {
     // popup with info about movie
     const selectedMovie = e.target.parentNode;
     const movie = movies[selectedMovie.id]; // aller chercher le film avec son index !!!! rien de plus simple
-    popup = `<div class="card popup">
-     <div class="card-body">
+    popup = `
+    <div class="card popup">
+     <div class="card">
        <h2 class="card-title">${movie.title}</h2>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Genres: ${movie.genres}</li>
@@ -69,12 +70,17 @@ document.body.addEventListener('click', (e) => {
           <li class="list-group-item">IMBD code: ${movie.imdb}</li>
           </ul>
           <button class="close">X</button>
-      </div></div>`;
+      </div>
+    </div>`;
     app.innerHTML += popup;
+    // fermer le popup = l'effacer du HTML
   } else if (e.target.matches('.close')) {
     const popups = document.querySelectorAll('.popup');
     for (popup of popups) {
-      popup.classList.add('invisible');
+      const popupContainer = e.target.parentNode.parentNode.parentNode;
+      // console.log(popupContainer);
+      popupContainer.removeChild(popup);
+      // popup.classList.add('invisible');
     }
   }
 });

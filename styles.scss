@@ -11,7 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: rgb(148, 26, 26);
+  background-color: $dark-red;
 }
 
 img {
@@ -19,7 +19,7 @@ img {
 }
 
 .card {
-  width: 300px;
+  width: 400px;
   border: none;
   background-color: black;
   justify-content: center;
@@ -52,20 +52,21 @@ button {
 
 .popup {
   position: fixed;
-  left: 25%;
-  bottom: 20%;
-  border: 5px solid rgb(99, 19, 59);
-  width: 50%;
-  h2 {
-    font-size: 5rem;
-    color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  .card {
+    background-color: $dark-red;
+    border: 1px solid $dark-red;
   }
-  .list-group-item {
-    font-size: 2rem;
+  h2 {
+    color: white;
+    padding: 30px;
   }
   .close {
-    margin-right: 50%;
-    font-size: 5rem;
+    font-size: 2rem;
     color: white;
   }
 }
